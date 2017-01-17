@@ -7,15 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "本SEED 可以自动创建一个ADMIN账号，并产生10个PUBLIC jobs ，10个 hidden jobs"
 
-create_account = User.create([email: 'example@email.com', password: '12345678', password_confirmation: '12345678'])
+create_account = User.create([email: 'example@email.com', password: '12345678', password_confirmation: '12345678', is_admin: 'true'])
 puts "admin account created"
 
 create_jos = for i in 1..10 do
-Job.create!([title: "public-job no. #{i}", description: "这是 seed 创建的第 #{i} 个 public-job"])
+Job.create!([title: "public-job no. #{i}", description: "这是 seed 创建的第 #{i} 个 public-job", wage_lower_bound: rand(1..49)*100, wage_upper_bound: rand(50..99)*100, is_hidden:"false"])
 end
 puts "public-jobs created"
 
 create_jos= for i in 1..10 do
-  Job.create!([title: "hidden-job no. #{i}", description: "这是 seed 创建的第 #{i} 个 hidden-job"])
+  Job.create!([title: "hidden-job no. #{i}", description: "这是 seed 创建的第 #{i} 个 hidden-job",wage_lower_bound: rand(1..49)*100, wage_upper_bound: rand(50..99)*100, is_hidden:"true"])
 end
 puts "hidden-job created"
