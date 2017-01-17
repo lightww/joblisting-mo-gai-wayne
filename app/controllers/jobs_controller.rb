@@ -28,7 +28,7 @@ class JobsController < ApplicationController
 
   def update
     @job = Job.find(params[:id])
-    if @job = Job.update(job_params)
+    if @job.update(job_params)
       redirect_to jobs_path
     else
     end
@@ -43,6 +43,6 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title, :description)
+    params.require(:job).permit(:title, :description, :wage_lower_bound, :wage_upper_bound, :contact_email)
   end
 end
