@@ -5,17 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-puts "本SEED 可以自动创建一个ADMIN账号，并产生10个PUBLIC jobs ，10个 hidden jobs"
+puts "這個種子檔會自動建立一個admin帳號, 並且創建 10 個 public jobs, 以及10個hidden jobs"
 
-create_account = User.create([email: 'example@email.com', password: '12345678', password_confirmation: '12345678'])
-puts "admin account created"
+create_account = User.create([email: 'admin@test.com', password: '111111', password_confirmation: '111111', is_admin: 'true'])
+puts "Admin account created."
 
 create_jos = for i in 1..10 do
-Job.create!([title: "public-job no. #{i}", description: "这是 seed 创建的第 #{i} 个 public-job"])
+  Job.create!([title: "pubulic Job no.#{i}", description: "這是用種子建立的第 #{i} 個Public工作", wage_upper_bound: rand(50..99)*100, wage_lower_bound: rand(10..49)*100, is_hidden: "false"])
 end
-puts "public-jobs created"
+puts "10 Public jobs created."
 
-create_jos= for i in 1..10 do
-  Job.create!([title: "hidden-job no. #{i}", description: "这是 seed 创建的第 #{i} 个 hidden-job"])
+create_jos = for i in 1..10 do
+  Job.create!([title: "hidden Job no.#{i+10}", description: "這是用種子建立的第 #{i+10} 個Hidden工作", wage_upper_bound: rand(50..99)*100, wage_lower_bound: rand(10..49)*100,is_hidden: "true"])
 end
-puts "hidden-job created"
+puts "10 Hidden jobs created."
